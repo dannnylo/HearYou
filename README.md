@@ -1,1 +1,3 @@
 # HearYou
+
+Podcasts aggregator.
