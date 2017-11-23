@@ -12,4 +12,4 @@ Run with
 
 and
 
-    npm start:dev
+    npm run start:dev
