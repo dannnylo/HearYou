@@ -12,6 +12,11 @@ export default class Player extends React.Component {
         url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/1hz-10khz-sweep.mp3',
         title: 'Test',
         duration: 0
+      },
+      {
+        url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/walking.mp3',
+        title: 'walking',
+        duration: 0
       }
     ]
 
