@@ -16,13 +16,16 @@ function createWindow () {
   mainWindow = new BrowserWindow({show: false})
   mainWindow.maximize()
   // and load the index.html of the app.
-  //mainWindow.loadURL('http://localhost:3000/')
+  if (process.env.NODE_ENV == 'production') {
+    mainWindow.loadURL(url.format({
+      pathname: path.join(__dirname, '..', '..', 'dist', 'index.html'),
+      protocol: 'file:',
+      slashes: true
+    }))
+  } else{
+    mainWindow.loadURL('http://localhost:8080/')
+  }
 
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, '..', '..', 'dist', 'index.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
   mainWindow.show()
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
