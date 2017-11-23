@@ -65,7 +65,7 @@ export default class Player extends React.Component {
             onStop={() => console.log('Stopped')}
             onFinishedPlaying={() => this.setState({playStatus: Sound.status.STOPPED})} />}
 
-        <Playlist songs={this.state.playlist} selectedSong={this.state.currentSong} onSongSelected={this.handleSongSelected.bind(this)} />
+        {/* <Playlist songs={this.state.playlist} selectedSong={this.state.currentSong} onSongSelected={this.handleSongSelected.bind(this)} /> */}
       </div>
     );
   }

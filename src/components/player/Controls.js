@@ -27,23 +27,19 @@ export default class Controls extends React.Component {
 
     return (
       <div>
-        <Button.Group>
+        <Button.Group style={{'marginRight': '5px'}}>
           <Button onClick={this.props.onVolumeUp} icon='plus' />
-          <Button icon='play' />
-          <Button icon='pause' />
-          <Button icon='repeat' />
           <Button onclick={this.props.onVolumeDown} icon='minus' />
         </Button.Group>
 
-        <ul>
-          {controls.play && control('Play', this.props.onPlay)}
-          {controls.stop && control('Stop', this.props.onStop)}
-          {controls.pause && control('Pause', this.props.onPause)}
-          {controls.resume && control('Resume', this.props.onResume)}
-        </ul>
+        <Button.Group style={{'marginRight': '5px'}}>
+          {controls.play && control(<Button icon='play' />, this.props.onPlay)}
+          {controls.stop && control(<Button icon='stop' />, this.props.onStop)}
+          {controls.pause && control(<Button icon='pause' />, this.props.onPause)}
+          {controls.resume && control(<Button icon='resume' />, this.props.onResume)}
+        </Button.Group>
 
-         Loop?:
-         <input type="checkbox" checked={this.props.loop} onChange={this.props.onToggleLoop}/>
+        <Button color={this.props.loop ? 'green' : 'gray'} icon='repeat' onChange={this.props.onToggleLoop}/>
       </div>
     );
   }
