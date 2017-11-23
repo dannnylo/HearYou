@@ -35,38 +35,39 @@ export default class Player extends React.Component {
 
     const { volume, loop } = this.state;
 
-    return <div>
-
-      <Controls
-        playStatus={this.state.playStatus}
-        loop={loop}
-        onPlay={() => this.setState({playStatus: Sound.status.PLAYING})}
-        onPause={() => this.setState({playStatus: Sound.status.PAUSED})}
-        onResume={() => this.setState({playStatus: Sound.status.PLAYING})}
-        onStop={() => this.setState({playStatus: Sound.status.STOPPED, position: 0})}
-        onSeek={position => this.setState({ position })}
-        onVolumeUp={() => this.setState({volume: volume >= 100 ? volume : volume+10})}
-        onVolumeDown={() => this.setState({volume: volume <= 0 ? volume : volume-10})}
-        onToggleLoop={(e) => this.setState({loop: e.target.checked})}
-        duration={this.state.currentSong ? this.state.currentSong.duration : 0}
-        position={this.state.position} />
-      {this.state.currentSong &&
-        <Sound
-          url={this.state.currentSong.url}
+    return (
+      <div>
+        <Controls
           playStatus={this.state.playStatus}
-          playFromPosition={this.state.position}
-          volume={volume}
           loop={loop}
-          onLoading={({bytesLoaded, bytesTotal}) => console.log(`${bytesLoaded / bytesTotal * 100}% loaded`)}
-          onLoad={() => console.log('Loaded')}
-          onPlaying={({position}) => console.log('position' + position)}
-          onPause={() => console.log('Paused')}
-          onResume={() => console.log('Resumed')}
-          onStop={() => console.log('Stopped')}
-          onFinishedPlaying={() => this.setState({playStatus: Sound.status.STOPPED})} />}
+          onPlay={() => this.setState({playStatus: Sound.status.PLAYING})}
+          onPause={() => this.setState({playStatus: Sound.status.PAUSED})}
+          onResume={() => this.setState({playStatus: Sound.status.PLAYING})}
+          onStop={() => this.setState({playStatus: Sound.status.STOPPED, position: 0})}
+          onSeek={position => this.setState({ position })}
+          onVolumeUp={() => this.setState({volume: volume >= 100 ? volume : volume+10})}
+          onVolumeDown={() => this.setState({volume: volume <= 0 ? volume : volume-10})}
+          onToggleLoop={(e) => this.setState({loop: e.target.checked})}
+          duration={this.state.currentSong ? this.state.currentSong.duration : 0}
+          position={this.state.position} />
+        {this.state.currentSong &&
+          <Sound
+            url={this.state.currentSong.url}
+            playStatus={this.state.playStatus}
+            playFromPosition={this.state.position}
+            volume={volume}
+            loop={loop}
+            onLoading={({bytesLoaded, bytesTotal}) => console.log(`${bytesLoaded / bytesTotal * 100}% loaded`)}
+            onLoad={() => console.log('Loaded')}
+            onPlaying={({position}) => console.log('position' + position)}
+            onPause={() => console.log('Paused')}
+            onResume={() => console.log('Resumed')}
+            onStop={() => console.log('Stopped')}
+            onFinishedPlaying={() => this.setState({playStatus: Sound.status.STOPPED})} />}
 
-      <Playlist songs={this.state.playlist} selectedSong={this.state.currentSong} onSongSelected={this.handleSongSelected.bind(this)} />
-    </div>;
+        <Playlist songs={this.state.playlist} selectedSong={this.state.currentSong} onSongSelected={this.handleSongSelected.bind(this)} />
+      </div>
+    );
   }
 
   getStatusText() {

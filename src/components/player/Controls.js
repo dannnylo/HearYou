@@ -1,5 +1,6 @@
 import React from 'react';
 import Sound from 'react-sound';
+import { Menu, Icon, Button } from 'semantic-ui-react';
 
 function control(text, clickHandler) {
   const onClick = (ev) => {
@@ -26,9 +27,13 @@ export default class Controls extends React.Component {
 
     return (
       <div>
-        Volume:
-        <button onClick={this.props.onVolumeDown}>-</button>
-        <button onClick={this.props.onVolumeUp}>+</button>
+        <Button.Group>
+          <Button onClick={this.props.onVolumeUp} icon='plus' />
+          <Button icon='play' />
+          <Button icon='pause' />
+          <Button icon='repeat' />
+          <Button onclick={this.props.onVolumeDown} icon='minus' />
+        </Button.Group>
 
         <ul>
           {controls.play && control('Play', this.props.onPlay)}
