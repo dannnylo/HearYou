@@ -29,7 +29,7 @@ export default class Controls extends React.Component {
       <div>
         <Button.Group style={{'marginRight': '5px'}}>
           <Button onClick={this.props.onVolumeUp} icon='plus' />
-          <Button onclick={this.props.onVolumeDown} icon='minus' />
+          <Button onClick={this.props.onVolumeDown} icon='minus' />
         </Button.Group>
 
         <Button.Group style={{'marginRight': '5px'}}>
