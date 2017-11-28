@@ -1,0 +1,17 @@
+{
+  "name": "HearYou",
+  "productName": "HearYou",
+  "version": "0.1.0",
+  "description": "Podcasts aggregator.",
+  "main": "./main.prod.js",
+  "scripts": {
+    "postinstall": "npm rebuild --runtime=electron --target=1.6.6 --disturl=https://atom.io/download/atom-shell --build-from-source"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "feedparser": "^2.2.4",
+    "react-sound": "^0.9.0",
+    "semantic-ui": "^2.2.13",
+    "semantic-ui-react": "^0.77.0"
+  }
+}
