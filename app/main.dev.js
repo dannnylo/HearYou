@@ -13,6 +13,14 @@
 import { app, BrowserWindow } from 'electron';
 import MenuBuilder from './menu';
 
+/*
+const ElectronStore = require('electron-store');
+const electronStore = new ElectronStore();
+
+// electronStore.set('unicorn', {teste: 1});
+console.log(electronStore.get('unicorn'));
+*/
+
 let mainWindow = null;
 
 if (process.env.NODE_ENV === 'production') {

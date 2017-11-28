@@ -1,6 +1,8 @@
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron';
 
+
+
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
 
@@ -96,10 +98,7 @@ export default class MenuBuilder {
     const subMenuHelp = {
       label: 'Help',
       submenu: [
-        { label: 'Learn More', click() { shell.openExternal('http://electron.atom.io'); } },
-        { label: 'Documentation', click() { shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme'); } },
-        { label: 'Community Discussions', click() { shell.openExternal('https://discuss.atom.io/c/electron'); } },
-        { label: 'Search Issues', click() { shell.openExternal('https://github.com/atom/electron/issues'); } }
+        { label: 'Learn More', click() { shell.openExternal('http://electron.atom.io'); } }
       ]
     };
 
