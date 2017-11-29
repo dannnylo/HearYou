@@ -1,7 +1,6 @@
 import React from 'react';
 import Sound from 'react-sound';
 import Controls from './Controls';
-import Playlist from './Playlist';
 
 export default class Player extends React.Component {
   constructor(props) {
