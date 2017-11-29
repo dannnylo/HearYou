@@ -5,15 +5,6 @@ import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
 import './app.global.css';
 
-
-/*
-const ElectronStore = require('electron-store');
-const electronStore = new ElectronStore();
-
-electronStore.set('unicorn', {teste: 1});
-console.log(electronStore.get('unicorn'));
-*/
-
 const store = configureStore();
 
 render(

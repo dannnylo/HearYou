@@ -1,5 +1,5 @@
 // @flow
-// import type { counterStateType } from '../reducers/counter';
+import type { playlistStateType } from '../reducers/playlist';
 
 type actionType = {
   +type: string
@@ -7,35 +7,25 @@ type actionType = {
 
 export const ADD_ITEM = 'ADD_ITEM';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const LOAD_PLAYLIST = 'LOAD_PLAYLIST';
 
-export function increment() {
+export function loadPlaylist(playlist) {
   return {
-    type: ADD_ITEM
+    type: LOAD_PLAYLIST,
+    playlist: playlist
   };
 }
 
-export function decrement() {
+export function addItem(item) {
   return {
-    type: REMOVE_ITEM
+    type: ADD_ITEM,
+    item: item
   };
 }
 
-export function incrementIfOdd() {
-  return (dispatch: (action: actionType) => void, getState: () => counterStateType) => {
-    const { counter } = getState();
-
-    if (counter % 2 === 0) {
-      return;
-    }
-
-    dispatch(increment());
-  };
-}
-
-export function incrementAsync(delay: number = 1000) {
-  return (dispatch: (action: actionType) => void) => {
-    setTimeout(() => {
-      dispatch(increment());
-    }, delay);
+export function removeItem(itemId) {
+  return {
+    type: REMOVE_ITEM,
+    itemId: itemId
   };
 }

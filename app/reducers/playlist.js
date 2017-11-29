@@ -1,16 +1,31 @@
 // @flow
-import { ADD_ITEM, REMOVE_ITEM } from '../actions/playlist';
+import ElectronStore from 'electron-store'
+import { ADD_ITEM, REMOVE_ITEM, LOAD_PLAYLIST } from '../actions/playlist';
+
+export type playlistStateType = {
+  +playlist: array
+};
 
 type actionType = {
   +type: string
 };
 
-export default function counter(state: { playlist: [] }, action: actionType) {
+export default function playlistReducer(state: playlist = [], action: actionType) {
+  let electronStore = new ElectronStore();
+
   switch (action.type) {
+    case LOAD_PLAYLIST:
+      return action.playlist
     case ADD_ITEM:
-      return state + 1;
+      var newPlaylist = [].concat(state.playlist)
+      newPlaylist.push(action.item)
+      electronStore.set('playlist', newPlaylist)
+      return newPlaylist;
     case REMOVE_ITEM:
-      return state - 1;
+      var newPlaylist = [].concat(state.playlist)
+      newPlaylist.reduce((item) => { return (item.id != action.itemId); })
+      electronStore.set('playlist', newPlaylist)
+      return newPlaylist;
     default:
       return state;
   }

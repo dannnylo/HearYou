@@ -1,76 +1,59 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Header, Image, Table, Button } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
+import ElectronStore from 'electron-store'
+import { bindActionCreators } from 'redux';
+
+import * as PlaylistActions from '../actions/playlist';
+import { loadPlaylistDispatch, loadPlaylist } from '../actions/playlist';
+
+import PlaylistItem from "../components/PlaylistItem"
+
+// let playlist = [
+//   {
+//     id: 2,
+//     url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/1hz-10khz-sweep.mp3',
+//     title: 'Test',
+//     duration: 0,
+//     podcast: {
+//       name: 'Mundo'
+//     }
+//   },
+//   {
+//     id: 3,
+//     url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/walking.mp3',
+//     title: 'walking',
+//     duration: 0,
+//     podcast: {
+//       name: 'Mundo'
+//     }
+//   }
+// ]
+// this.electronStore.set('playlist', playlist)
 
 class PlaylistPage extends Component {
   constructor(props) {
     super(props);
-    this.renderItems = this.renderItems.bind(this);
+    this.electronStore = new ElectronStore();
   }
 
-  renderItems() {
-    const rows = [];
-    // this.props.playlist
-    const playlist = [
-      {
-        id: 2,
-        url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/1hz-10khz-sweep.mp3',
-        title: 'Test',
-        duration: 0,
-        podcast: {
-          name: 'Mundo'
-        }
-      },
-      {
-        id: 3,
-        url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/walking.mp3',
-        title: 'walking',
-        duration: 0,
-        podcast: {
-          name: 'Mundo'
-        }
-      }
-    ]
-
-    for (var variable in playlist) {
-      if (playlist[variable]) {
-        const item = playlist[variable];
-
-        rows.push(<Table.Row key={item.id}>
-          <Table.Cell>
-            <Header as="h4" image>
-              <Image src="https://react.semantic-ui.com/assets/images/avatar/small/mark.png" rounded size="mini" />
-              <Header.Content>
-                {item.title}
-                <Header.Subheader>{item.podcast.name}</Header.Subheader>
-              </Header.Content>
-            </Header>
-          </Table.Cell>
-          <Table.Cell>
-            <Button icon="play" />
-          </Table.Cell>
-        </Table.Row>)
-      }
-    }
-    return rows;
+  componentDidMount() {
+    let playlist = this.electronStore.get('playlist')
+    playlist = playlist || []
+    this.props.loadPlaylist(playlist)
   }
 
   render() {
     return (
-      <Table striped celled collapsing size="large">
+      <Table striped celled>
         <Table.Body>
-          {this.renderItems()}
+          {this.props.playlist.map(function(item) { return (<PlaylistItem key={item.id} item={item} />); })}
         </Table.Body>
       </Table>
     );
   }
 }
-
-
-// import { bindActionCreators } from 'redux';
-// import Counter from '../components/Counter';
-// import * as CounterActions from '../actions/counter';
 
 function mapStateToProps(state) {
   return {
@@ -78,4 +61,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(PlaylistPage);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(PlaylistActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlaylistPage);

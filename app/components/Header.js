@@ -14,18 +14,14 @@ export default class Header extends Component {
       <div>
         <Menu pointing>
           <Menu.Item as={NavLink} to="/" exact activeClassName="active" onClick={this.handleItemClick}>
-            Home
+            My Podcasts
           </Menu.Item>
 
           <Menu.Item as={NavLink} to="/playlist" exact activeClassName="active" onClick={this.handleItemClick}>
             Playlist
           </Menu.Item>
 
-          <Menu.Item as={NavLink} to="/my_podcasts" exact activeClassName="active" onClick={this.handleItemClick}>
-            Meus Podcasts
-          </Menu.Item>
-
-          <Menu.Item as={NavLink} to="/market_place" exact activeClassName="active" onClick={this.handleItemClick}>
+          <Menu.Item as={NavLink} to="/market_place" exact activeClassName="active" onClick={this.handleItemClick} style={{display: 'none'}}>
             MarketPlace
           </Menu.Item>
 
@@ -35,7 +31,7 @@ export default class Header extends Component {
 
           <Menu.Menu position="right">
             <Menu.Item>
-              <Input icon="search" placeholder="Buscar novo podcast..." />
+              <Input icon="search" placeholder="Search podcast..." />
             </Menu.Item>
 
             <Menu.Item>
@@ -51,7 +47,7 @@ export default class Header extends Component {
             </Menu.Item>
 
             <Menu.Item as={NavLink} to="/configurations" exact activeClassName="active">
-              <Button icon title="Configurações">
+              <Button icon title="Settings">
                 <Icon name="setting" />
               </Button>
             </Menu.Item>

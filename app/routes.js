@@ -15,7 +15,6 @@ export default () => (
       <Route exact path="/" component={MyPodcastsPage} />
       <Route exact path="/playlist" component={PlaylistPage} />
       <Route exact path="/market_place" component={MarketPlacePage} />
-      <Route exact path="/my_podcasts" component={MyPodcastsPage} />
       <Route exact path="/downloads" component={DownloadsPage} />
       <Route exact path="/configurations" component={ConfigurationsPage} />
     </Switch>
