@@ -11,12 +11,13 @@ export default class PodcastItem extends Component {
           <Header as="h4" image>
             <Image src="https://react.semantic-ui.com/assets/images/avatar/small/mark.png" rounded size="mini" />
             <Header.Content>
-              {item.name}
+              {item.title}
               <Header.Subheader>{item.url}</Header.Subheader>
             </Header.Content>
           </Header>
         </Table.Cell>
         <Table.Cell>
+          <Button icon="refresh" />
         </Table.Cell>
       </Table.Row>);
   }

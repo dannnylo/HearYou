@@ -2,40 +2,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'semantic-ui-react';
-import ElectronStore from 'electron-store';
+import ElectronStore from 'electron-store'
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
 
-import * as PodcastActions from '../actions/podcast';
-import PodcastItem from '../components/PodcastItem';
+import * as PodcastActions from "../actions/podcast";
+import { loadPodcast } from "../actions/podcast";
 
-// let podcast = [
+import PodcastItem from "../components/PodcastItem"
+
+// var electronStore = new ElectronStore();
+// let podcasts = [
 //   {
 //     id: 2,
-//     url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/1hz-10khz-sweep.mp3',
-//     title: 'Test',
-//     duration: 0,
-//     podcast: {
-//       name: 'Mundo'
-//     }
+//     url: 'http://www.mundofreak.com.br/feed/podcast/',
+//     title: 'Mundo Freak'
 //   },
-//   {
-//     id: 3,
-//     url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/walking.mp3',
-//     title: 'walking',
-//     duration: 0,
-//     podcast: {
-//       name: 'Mundo'
-//     }
-//   }
 // ]
-// this.electronStore.set('podcast', podcast)
+// electronStore.set('podcasts', podcasts)
 
 class MyPodcastsPage extends Component {
   // props: {
-  //   podcasts: PropTypes.array,
-  //   electronStore: PropTypes.object,
-  //   loadPodcast: PropTypes.func
+  //   podcast: 'Array'
   // };
 
   constructor(props) {
@@ -44,10 +31,9 @@ class MyPodcastsPage extends Component {
   }
 
   componentDidMount() {
-    let podcasts = this.props.electronStore.get('podcasts')
-    podcasts = podcasts || []
-    console.info(podcasts)
-    this.props.loadPodcast(podcasts)
+    let podcast = this.electronStore.get('podcasts')
+    podcast = podcast || []
+    this.props.loadPodcast(podcast)
   }
 
   render() {
@@ -67,7 +53,7 @@ class MyPodcastsPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    podcast: state.podcast
+    podcasts: state.podcasts
   };
 }
 

@@ -10,8 +10,8 @@ export type podcastStateType = {
 type actionType = {
   +type: string,
   podcasts: array,
-  // item: PodcastItem,
-  // itemId: string
+  item: object,
+  itemId: object
 };
 
 export default function podcastReducer(state: podcasts = [], action: actionType) {
@@ -20,16 +20,16 @@ export default function podcastReducer(state: podcasts = [], action: actionType)
   switch (action.type) {
     case LOAD_PODCASTS:
       return action.podcasts;
-    // case ADD_ITEM:
-    //   const newPodcasts = [].concat(state.podcasts)
-    //   newPodcasts.push(action.item)
-    //   electronStore.set('podcasts', newPodcasts)
-    //   return newPodcasts;
-    // case REMOVE_ITEM:
-    //   const reducedPodcasts = [].concat(state.podcast)
-    //   reducedPodcasts.reduce((item) => { return (item.id != action.itemId)})
-    //   electronStore.set('podcasts', reducedPodcasts)
-    //   return reducedPodcasts;
+    case ADD_ITEM:
+      const newPodcast = [].concat(state.podcast)
+      newPodcast.push(action.item)
+      electronStore.set('podcast', newPodcast)
+      return newPodcast;
+    case REMOVE_ITEM:
+      const reducedPodcast = [].concat(state.podcast)
+      reducedPodcast.reduce((item) => { return (item.id != action.itemId)})
+      electronStore.set('podcast', reducedPodcast)
+      return reducedPodcast;
     default:
       return state;
   }

@@ -5,10 +5,10 @@ export const ADD_ITEM = 'ADD_ITEM';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const LOAD_PODCASTS = 'LOAD_PODCASTS';
 
-export function loadPodcast(podcast) {
+export function loadPodcast(podcasts) {
   return {
     type: LOAD_PODCASTS,
-    podcast
+    podcasts
   };
 }
 
