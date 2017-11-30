@@ -2,13 +2,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Table } from 'semantic-ui-react';
-import ElectronStore from 'electron-store'
+import ElectronStore from 'electron-store';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
-import * as PodcastActions from "../actions/podcast";
-import { loadPodcast } from "../actions/podcast";
-
-import PodcastItem from "../components/PodcastItem"
+import * as PodcastActions from '../actions/podcast';
+import PodcastItem from '../components/PodcastItem';
 
 // let podcast = [
 //   {
@@ -33,9 +32,11 @@ import PodcastItem from "../components/PodcastItem"
 // this.electronStore.set('podcast', podcast)
 
 class MyPodcastsPage extends Component {
-  props: {
-    podcast: 'Array'
-  };
+  // props: {
+  //   podcasts: PropTypes.array,
+  //   electronStore: PropTypes.object,
+  //   loadPodcast: PropTypes.func
+  // };
 
   constructor(props) {
     super(props);
@@ -43,9 +44,10 @@ class MyPodcastsPage extends Component {
   }
 
   componentDidMount() {
-    let podcast = this.electronStore.get('podcast')
-    podcast = podcast || []
-    this.props.loadPodcast(podcast)
+    let podcasts = this.props.electronStore.get('podcasts')
+    podcasts = podcasts || []
+    console.info(podcasts)
+    this.props.loadPodcast(podcasts)
   }
 
   render() {
@@ -53,7 +55,7 @@ class MyPodcastsPage extends Component {
       <Table striped celled>
         <Table.Body>
           {
-            this.props.podcast.map((item) => {
+            this.props.podcasts.map((item) => {
               return (<PodcastItem key={item.id} item={item} />);
             })
           }
