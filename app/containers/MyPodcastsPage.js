@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Table } from 'semantic-ui-react';
+import { Table, Button } from 'semantic-ui-react';
 import ElectronStore from 'electron-store'
 import { bindActionCreators } from 'redux';
 
@@ -9,6 +9,7 @@ import * as PodcastActions from "../actions/podcast";
 import { loadPodcast } from "../actions/podcast";
 
 import PodcastItem from "../components/PodcastItem"
+import NewPodcast from "../components/podcasts/NewPodcast"
 
 // var electronStore = new ElectronStore();
 // let podcasts = [
@@ -16,7 +17,7 @@ import PodcastItem from "../components/PodcastItem"
 //     id: 2,
 //     url: 'http://www.mundofreak.com.br/feed/podcast/',
 //     title: 'Mundo Freak'
-//   },
+//   }
 // ]
 // electronStore.set('podcasts', podcasts)
 
@@ -36,17 +37,24 @@ class MyPodcastsPage extends Component {
     this.props.loadPodcast(podcast)
   }
 
+  openAddPodcast() {
+
+  }
+
   render() {
     return (
-      <Table striped celled>
-        <Table.Body>
-          {
-            this.props.podcasts.map((item) => {
-              return (<PodcastItem key={item.id} item={item} />);
-            })
-          }
-        </Table.Body>
-      </Table>
+      <div>
+        <NewPodcast />
+        <Table striped celled>
+          <Table.Body>
+            {
+              this.props.podcasts.map((item) => {
+                return (<PodcastItem key={item.id} item={item} />);
+              })
+            }
+          </Table.Body>
+        </Table>
+      </div>
     );
   }
 }
