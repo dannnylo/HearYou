@@ -16,8 +16,11 @@ export default class PodcastItem extends Component {
             </Header.Content>
           </Header>
         </Table.Cell>
-        <Table.Cell>
+
+        <Table.Cell collapsing>
           <Button icon="refresh" />
+          <Button icon="list layout" />
+          <Button icon="remove" />
         </Table.Cell>
       </Table.Row>);
   }
