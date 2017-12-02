@@ -1,10 +1,16 @@
 // @flow
 import React, { Component } from 'react';
 import { Header, Image, Table, Button } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 
 export default class PodcastItem extends Component {
+  remove() {
+    console.log('TODO: remover podcast da lista')
+  }
+
   render() {
     const item = this.props.item;
+
     return (
       <Table.Row key={item.id}>
         <Table.Cell>
@@ -19,8 +25,8 @@ export default class PodcastItem extends Component {
 
         <Table.Cell collapsing>
           <Button icon="refresh" />
-          <Button icon="list layout" />
-          <Button icon="remove" />
+          <Button as={NavLink} to={"/playlist/" + item.id} exact icon="list layout" />
+          <Button icon="remove" onClick={this.remove} />
         </Table.Cell>
       </Table.Row>);
   }

@@ -8,12 +8,14 @@ import DownloadsPage from './containers/DownloadsPage';
 import MarketPlacePage from './containers/MarketPlacePage';
 import MyPodcastsPage from './containers/MyPodcastsPage';
 import PlaylistPage from './containers/PlaylistPage';
+import PodcastPage from './containers/PodcastPage';
 
 export default () => (
   <App>
     <Switch>
       <Route exact path="/" component={MyPodcastsPage} />
       <Route exact path="/playlist" component={PlaylistPage} />
+      <Route exact path="/playlist/:id" component={PodcastPage} />
       <Route exact path="/market_place" component={MarketPlacePage} />
       <Route exact path="/downloads" component={DownloadsPage} />
       <Route exact path="/configurations" component={ConfigurationsPage} />
