@@ -35,6 +35,7 @@ module.exports = class RSSParser {
       var stream = this;
       var meta = this.meta;
       var item;
+      console.info(meta)
       callback(meta);
     });
   }
@@ -74,7 +75,3 @@ module.exports = class RSSParser {
 
   }
 }
-
-// new RSSParser('1', 'http://www.mundofreak.com.br/feed/podcast/').getItems(function(item){
-//   console.info(item.getFileUrl())
-// })

@@ -15,7 +15,7 @@ export default class PodcastItem extends Component {
       <Table.Row key={item.id}>
         <Table.Cell>
           <Header as="h4" image>
-            <Image src="https://react.semantic-ui.com/assets/images/avatar/small/mark.png" rounded size="mini" />
+            <Image src={item.cover} rounded size="mini" />
             <Header.Content>
               {item.title}
               <Header.Subheader>{item.url}</Header.Subheader>
