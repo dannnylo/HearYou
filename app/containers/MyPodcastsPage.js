@@ -11,34 +11,13 @@ import { loadPodcast } from "../actions/podcast";
 import PodcastItem from "../components/PodcastItem"
 import NewPodcast from "../components/podcasts/NewPodcast"
 
-// var electronStore = new ElectronStore();
-// let podcasts = [
-//   {
-//     id: 2,
-//     url: 'http://www.mundofreak.com.br/feed/podcast/',
-//     title: 'Mundo Freak'
-//   }
-// ]
-// electronStore.set('podcasts', podcasts)
-
 class MyPodcastsPage extends Component {
   // props: {
   //   podcast: 'Array'
   // };
 
-  constructor(props) {
-    super(props);
-    this.electronStore = new ElectronStore();
-  }
-
   componentDidMount() {
-    let podcast = this.electronStore.get('podcasts')
-    podcast = podcast || []
-    this.props.loadPodcast(podcast)
-  }
-
-  openAddPodcast() {
-
+    this.props.loadPodcast(new ElectronStore().get('podcasts', []))
   }
 
   render() {

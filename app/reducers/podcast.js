@@ -1,6 +1,6 @@
 // @flow
 import ElectronStore from 'electron-store'
-import { ADD_ITEM, REMOVE_ITEM, LOAD_PODCASTS } from '../actions/podcast';
+import { ADD_PODCAST, REMOVE_PODCAST, LOAD_PODCASTS } from '../actions/podcast';
 import PodcastItem from '../components/PodcastItem';
 
 export type podcastStateType = {
@@ -14,21 +14,22 @@ type actionType = {
   itemId: object
 };
 
-export default function podcastReducer(state: podcasts = [], action: actionType) {
+export default function podcastReducer(state = [], action: actionType) {
   const electronStore = new ElectronStore();
 
   switch (action.type) {
     case LOAD_PODCASTS:
+      console.info('LOAD', action.podcasts)
       return action.podcasts;
-    case ADD_ITEM:
-      const newPodcast = [].concat(state.podcast)
+    case ADD_PODCAST:
+      const newPodcast = [].concat(state)
       newPodcast.push(action.item)
-      electronStore.set('podcast', newPodcast)
+      electronStore.set('podcasts', newPodcast)
       return newPodcast;
-    case REMOVE_ITEM:
+    case REMOVE_PODCAST:
       const reducedPodcast = [].concat(state.podcast)
       reducedPodcast.reduce((item) => { return (item.id != action.itemId)})
-      electronStore.set('podcast', reducedPodcast)
+      electronStore.set('podcasts', reducedPodcast)
       return reducedPodcast;
     default:
       return state;

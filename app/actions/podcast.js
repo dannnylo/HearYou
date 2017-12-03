@@ -1,8 +1,8 @@
 // @flow
 import type { podcastStateType } from "../reducers/podcast";
 
-export const ADD_ITEM = 'ADD_ITEM';
-export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const ADD_PODCAST = 'ADD_PODCAST';
+export const REMOVE_PODCAST = 'REMOVE_PODCAST';
 export const LOAD_PODCASTS = 'LOAD_PODCASTS';
 
 export function loadPodcast(podcasts) {
@@ -12,16 +12,16 @@ export function loadPodcast(podcasts) {
   };
 }
 
-export function addItem(item) {
+export function addPodcast(item) {
   return {
-    type: ADD_ITEM,
+    type: ADD_PODCAST,
     item
   };
 }
 
-export function removeItem(itemId) {
+export function removePodcast(itemId) {
   return {
-    type: REMOVE_ITEM,
+    type: REMOVE_PODCAST,
     itemId
   };
 }

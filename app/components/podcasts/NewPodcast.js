@@ -1,14 +1,37 @@
 import React, { Component } from 'react'
-import { Button, Modal } from 'semantic-ui-react'
+import { Button, Modal, Input, Icon } from 'semantic-ui-react'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as PodcastActions from "../../actions/podcast";
+import RSSParser from "../../utils/RSSParser";
 
 class NewPodcast extends Component {
-  state = { open: false }
+  constructor(props) {
+    super(props);
+    this.addPodcast = this.addPodcast.bind(this);
+    this.onChangeUrl = this.onChangeUrl.bind(this);
+  }
+  state = { open: false, url: '' }
 
   show = () => this.setState({ open: true })
   close = () => this.setState({ open: false })
 
+
   addPodcast() {
-    console.info(this)
+    let parser = new RSSParser(1, this.state.url)
+    parser.getMeta((meta) => {
+      this.props.addPodcast({
+        id: meta.xmlUrl,
+        url: meta.xmlUrl,
+        title: meta.title
+      })
+    })
+    this.setState({ open: false, url: '' })
+  }
+
+  onChangeUrl(event) {
+    this.setState({ open: this.state.open, url: event.target.value })
   }
 
   render() {
@@ -19,16 +42,19 @@ class NewPodcast extends Component {
         <Button icon='plus' onClick={this.show} />
         <Modal size='small' open={open} onClose={this.close}>
           <Modal.Header>
-            Add new podcast
+            Add Podcast
           </Modal.Header>
           <Modal.Content>
-            <p>Are</p>
+            <Input iconPosition='left' placeholder='Url' fluid onChange={this.onChangeUrl} >
+              <Icon name='linkify' />
+              <input />
+            </Input>
           </Modal.Content>
           <Modal.Actions>
             <Button negative onClick={this.close}>
               Cancel
             </Button>
-            <Button positive icon='checkmark' labelPosition='right' content='Yes' onClick={this.addPodcast}/>
+            <Button positive icon='checkmark' labelPosition='right' content='Add' onClick={this.addPodcast}/>
           </Modal.Actions>
         </Modal>
       </div>
@@ -36,4 +62,14 @@ class NewPodcast extends Component {
   }
 }
 
-export default NewPodcast
+function mapStateToProps(state) {
+  return {
+    podcasts: state.podcasts
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(PodcastActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewPodcast);
