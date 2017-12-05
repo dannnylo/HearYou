@@ -1,29 +1,25 @@
 module.exports = class PodcastItem {
-  constructor(data){
+  constructor(data) {
     this.data = data;
-
-    console.info("========================================")
-    console.info(data)
-    console.info("========================================")
   }
 
-  getTitle(){
+  getTitle() {
     return this.data.title
   }
 
-  getUid(){
+  getUid() {
     return this.data.guid
   }
 
-  getDate(){
+  getDate() {
     return this.data.pubDate
   }
 
-  getDescription(){
+  getDescription() {
     return this.data.description
   }
 
-  getFileUrl(){
+  getFileUrl() {
     return this.data.enclosures[0].url
   }
 }

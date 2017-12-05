@@ -22,7 +22,7 @@ class NewPodcast extends Component {
     const parser = new RSSParser(1, this.state.url);
     parser.getMeta((meta) => {
       this.props.addPodcast({
-        id: meta.xmlUrl,
+        id: (new Date().getTime()),
         url: meta.xmlUrl,
         title: meta.title,
         description: meta.description,

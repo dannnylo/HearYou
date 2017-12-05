@@ -19,7 +19,7 @@ export default function podcastReducer(state = [], action: actionType) {
 
   switch (action.type) {
     case LOAD_PODCASTS:
-      console.info('LOAD', action.podcasts)
+      if (action.podcasts == null) { return []; }
       return action.podcasts;
     case ADD_PODCAST:
       const newPodcast = [].concat(state)
@@ -27,8 +27,7 @@ export default function podcastReducer(state = [], action: actionType) {
       electronStore.set('podcasts', newPodcast)
       return newPodcast;
     case REMOVE_PODCAST:
-      const reducedPodcast = [].concat(state.podcast)
-      reducedPodcast.reduce((item) => { return (item.id != action.itemId)})
+      const reducedPodcast = state.filter((item) => { return item.id != action.itemId })
       electronStore.set('podcasts', reducedPodcast)
       return reducedPodcast;
     default:

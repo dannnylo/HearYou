@@ -14,8 +14,8 @@ export default () => (
   <App>
     <Switch>
       <Route exact path="/" component={MyPodcastsPage} />
+      <Route exact path="/podcasts/:id" component={PodcastPage} />
       <Route exact path="/playlist" component={PlaylistPage} />
-      <Route exact path="/playlist/:id" component={PodcastPage} />
       <Route exact path="/market_place" component={MarketPlacePage} />
       <Route exact path="/downloads" component={DownloadsPage} />
       <Route exact path="/configurations" component={ConfigurationsPage} />

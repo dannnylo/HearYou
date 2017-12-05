@@ -2,10 +2,18 @@
 import React, { Component } from 'react';
 import { Header, Image, Table, Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as PodcastActions from '../actions/podcast';
 
-export default class PodcastItem extends Component {
-  remove() {
-    console.log('TODO: remover podcast da lista')
+class PodcastItem extends Component {
+  constructor(props) {
+    super(props);
+    this.removePodcast = this.removePodcast.bind(this);
+  }
+
+  removePodcast() {
+    this.props.removePodcast(this.props.item.id);
   }
 
   render() {
@@ -25,9 +33,20 @@ export default class PodcastItem extends Component {
 
         <Table.Cell collapsing>
           <Button icon="refresh" />
-          <Button as={NavLink} to={"/playlist/" + item.id} exact icon="list layout" />
-          <Button icon="remove" onClick={this.remove} />
+          <Button as={NavLink} to={"/podcasts/" + item.id} exact icon="list layout" />
+          <Button icon="remove" onClick={this.removePodcast} />
         </Table.Cell>
       </Table.Row>);
   }
 }
+
+
+function mapStateToProps(state) {
+  return { };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(PodcastActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PodcastItem);

@@ -35,7 +35,6 @@ module.exports = class RSSParser {
       var stream = this;
       var meta = this.meta;
       var item;
-      console.info(meta)
       callback(meta);
     });
   }
@@ -67,7 +66,6 @@ module.exports = class RSSParser {
       var stream = this;
       var meta = this.meta;
       var item;
-      console.info(meta)
       while (item = stream.read()) {
         callback(new PodcastItem(item))
       }

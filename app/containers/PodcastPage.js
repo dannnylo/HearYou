@@ -16,13 +16,12 @@ class PodcastPage extends Component {
   }
 
   componentDidMount() {
-    console.log(parseInt(this.props.match.params.id, 10));
+    // console.log(parseInt(this.props.match.params.id, 10));
   }
 
   render() {
     let podcast_id = parseInt(this.props.match.params.id, 10);
     let podcast = this.electronStore.get('podcasts')[0];
-    console.log(podcast)
 
     return (
       <div>
