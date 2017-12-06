@@ -32,10 +32,14 @@ module.exports = class RSSParser {
     });
 
     feedparser.on('readable', function () {
-      var stream = this;
-      var meta = this.meta;
-      var item;
-      callback(meta);
+      let item;
+      const items = [];
+      // while (item = this.read()) {
+      //   items.push(item);
+      // }
+      console.info(this)
+      console.info("READABLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+      callback(this.meta, items);
     });
   }
 

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as PodcastActions from '../../actions/podcast';
+import * as EpisodesActions from '../../actions/episode';
 import RSSParser from '../../utils/RSSParser';
 
 class NewPodcast extends Component {
@@ -20,14 +21,17 @@ class NewPodcast extends Component {
 
   addPodcast() {
     const parser = new RSSParser(1, this.state.url);
-    parser.getMeta((meta) => {
-      this.props.addPodcast({
-        id: (new Date().getTime()),
-        url: meta.xmlUrl,
-        title: meta.title,
-        description: meta.description,
-        cover: meta.image.url
-      });
+    parser.getMeta((meta, episodes) => {
+      console.info('aqui')
+      const podcastId = (new Date().getTime())
+      // this.props.addPodcast({
+      //   id: podcastId,
+      //   url: meta.xmlUrl,
+      //   title: meta.title,
+      //   description: meta.description,
+      //   cover: meta.image.url
+      // });
+      // this.props.addEpisodes(podcastId, episodes);
     });
     this.setState({ open: false, url: '' });
   }
@@ -74,7 +78,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(PodcastActions, dispatch);
+  return bindActionCreators(Object.assign(PodcastActions, EpisodesActions), dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewPodcast);
