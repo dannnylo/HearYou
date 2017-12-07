@@ -21,17 +21,16 @@ class NewPodcast extends Component {
 
   addPodcast() {
     const parser = new RSSParser(1, this.state.url);
-    parser.getMeta((meta, episodes) => {
-      console.info('aqui')
-      const podcastId = (new Date().getTime())
-      // this.props.addPodcast({
-      //   id: podcastId,
-      //   url: meta.xmlUrl,
-      //   title: meta.title,
-      //   description: meta.description,
-      //   cover: meta.image.url
-      // });
-      // this.props.addEpisodes(podcastId, episodes);
+    parser.getData((data) => {
+      const podcastId = new Date().getTime();
+      this.props.addPodcast({
+        id: podcastId,
+        url: data.url,
+        title: data.title,
+        description: data.description,
+        cover: data.image
+      });
+      this.props.addEpisodes(podcastId, data.episodes);
     });
     this.setState({ open: false, url: '' });
   }
