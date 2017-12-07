@@ -23,6 +23,7 @@ class NewPodcast extends Component {
     const parser = new RSSParser(1, this.state.url);
     parser.getData((data) => {
       const podcastId = new Date().getTime();
+      console.info("PODCAST", data);
       this.props.addPodcast({
         id: podcastId,
         url: data.url,
@@ -30,6 +31,7 @@ class NewPodcast extends Component {
         description: data.description,
         cover: data.image
       });
+      console.info('NEW_POD', data.episodes);
       this.props.addEpisodes(podcastId, data.episodes);
     });
     this.setState({ open: false, url: '' });

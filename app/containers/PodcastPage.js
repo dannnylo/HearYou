@@ -4,35 +4,33 @@ import { connect } from 'react-redux';
 import ElectronStore from 'electron-store'
 import { bindActionCreators } from 'redux';
 
-import * as PodcastActions from "../actions/podcast";
-import { loadPodcast } from "../actions/podcast";
+import * as EpisodesActions from "../actions/episode";
 
 import { Sidebar, Segment, Table, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
 
 class PodcastPage extends Component {
   constructor(props) {
     super(props);
-    this.electronStore = new ElectronStore();
   }
 
   componentDidMount() {
-    // console.log(parseInt(this.props.match.params.id, 10));
+    this.props.loadEpisodes(new ElectronStore().get('episodes_' + this.props.podcastId, []))
   }
 
   render() {
-    let podcast_id = parseInt(this.props.match.params.id, 10);
-    let podcast = this.electronStore.get('podcasts')[0];
+    const podcast = this.props.podcast;
 
     return (
       <div>
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='push' width='thin' visible="true" icon='labeled' vertical inverted >
-            <Image src='https://hipsters.tech/wp-content/uploads/2017/01/logo-hipsters-pontotech.svg' />
+            <Image src={podcast.image} />
+            {podcast.title}
           </Sidebar>
 
           <Sidebar.Pusher>
             <Segment basic>
-              <Header as='h3'>O id do meu podcast é {podcast_id}</Header>
+              <Header as='h3'>O id do meu podcast é {podcast.title}</Header>
 
               {/* {
                 podcast.map((item) => {
@@ -47,14 +45,22 @@ class PodcastPage extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+  const podcastId = parseInt(props.match.params.id, 10);
+  var podcasts = state.podcasts;
+  if (podcasts.length == 0) {
+    podcasts = (new ElectronStore()).get('podcasts', [])
+  }
+
   return {
-    podcasts: state.podcasts
+    episodes: state.episodes,
+    podcastId: podcastId,
+    podcast: podcasts.filter((podcast) => { return podcast.id == podcastId })[0]
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(PodcastActions, dispatch);
+  return bindActionCreators(EpisodesActions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PodcastPage);

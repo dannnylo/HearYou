@@ -6,7 +6,7 @@ export const ADD_EPISODES = 'ADD_EPISODES';
 export const REMOVE_EPISODE = 'REMOVE_EPISODE';
 export const LOAD_EPISODES = 'LOAD_EPISODES';
 
-export function loadEpisode(episodes) {
+export function loadEpisodes(episodes) {
   return {
     type: LOAD_EPISODES,
     episodes
@@ -27,10 +27,10 @@ export function removeEpisode(itemId) {
   };
 }
 
-export function addEpisodes(podcastId, items) {
+export function addEpisodes(podcastId, episodes) {
   return {
     type: ADD_EPISODES,
     podcastId,
-    items
+    episodes
   };
 }

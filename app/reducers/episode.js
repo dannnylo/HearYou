@@ -14,7 +14,7 @@ type actionType = {
   itemId: object
 };
 
-export default function episodeReducer(state = {}, action: actionType) {
+export default function episodeReducer(state = [], action: actionType) {
   const electronStore = new ElectronStore();
 
   switch (action.type) {
@@ -22,9 +22,8 @@ export default function episodeReducer(state = {}, action: actionType) {
       if (action.episodes == null) { return []; }
       return action.episodes;
     case ADD_EPISODES:
-      let resultEpisodes = Object.assign({}, state)
-      resultEpisodes[action.podcastId] = action.episodes
-      return resultEpisodes;
+      electronStore.set('episodes_' + action.podcastId, action.episodes)
+      return action.episodes;
     // case ADD_EPISODE:
     //   const newEpisode = [].concat(state)
     //   newEpisode.push(action.item)
