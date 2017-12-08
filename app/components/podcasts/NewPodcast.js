@@ -26,7 +26,7 @@ class NewPodcast extends Component {
       console.info("PODCAST", data);
       this.props.addPodcast({
         id: podcastId,
-        url: data.url,
+        url: data.link,
         title: data.title,
         description: data.description,
         cover: data.image

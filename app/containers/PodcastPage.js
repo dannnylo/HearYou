@@ -8,6 +8,8 @@ import * as EpisodesActions from "../actions/episode";
 
 import { Sidebar, Segment, Table, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
 
+import Episode from "../components/podcasts/Episode";
+
 class PodcastPage extends Component {
   constructor(props) {
     super(props);
@@ -24,19 +26,23 @@ class PodcastPage extends Component {
       <div>
         <Sidebar.Pushable as={Segment}>
           <Sidebar as={Menu} animation='push' width='thin' visible="true" icon='labeled' vertical inverted >
-            <Image src={podcast.image} />
+            <Image src={podcast.cover} />
             {podcast.title}
           </Sidebar>
 
           <Sidebar.Pusher>
             <Segment basic>
               <Header as='h3'>O id do meu podcast é {podcast.title}</Header>
-
-              {/* {
-                podcast.map((item) => {
-                  conosole.log(item.id);
-                })
-              } */}
+              <Table striped celled>
+                <Table.Body>
+                  {
+                    this.props.episodes.map((episode) => {
+                      console.info(episode)
+                      return (<Episode key={episode.id} eppisode={episode} />);
+                    })
+                  }
+                </Table.Body>
+              </Table>
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
