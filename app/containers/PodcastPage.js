@@ -25,20 +25,19 @@ class PodcastPage extends Component {
     return (
       <div>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='push' width='thin' visible="true" icon='labeled' vertical inverted >
+          <Sidebar as={Menu} animation='push' width='thin' visible={true} icon='labeled' vertical inverted >
             <Image src={podcast.cover} />
             {podcast.title}
           </Sidebar>
 
           <Sidebar.Pusher>
             <Segment basic>
-              <Header as='h3'>O id do meu podcast é {podcast.title}</Header>
-              <Table striped celled>
+              <Header as='h3'>{podcast.title}</Header>
+              <Table striped celled columns='10'>
                 <Table.Body>
                   {
                     this.props.episodes.map((episode) => {
-                      console.info(episode)
-                      return (<Episode key={episode.id} eppisode={episode} />);
+                      return (<Episode key={episode.guid} episode={episode} />);
                     })
                   }
                 </Table.Body>

@@ -18,9 +18,9 @@ class Episode extends Component {
 
   render() {
     const episode = this.props.episode;
-
+    console.info(episode)
     return (
-      <Table.Row key={episode.id}>
+      <Table.Row key={episode.guid}>
         <Table.Cell>
           <Header as="h4" image>
             <Image src={episode.cover} rounded size="mini" />
@@ -30,7 +30,9 @@ class Episode extends Component {
             </Header.Content>
           </Header>
         </Table.Cell>
-
+        <Table.Cell>
+          {episode.published}
+        </Table.Cell>
         <Table.Cell collapsing>
           <Button icon="refresh" />
           <Button icon="remove" onClick={this.playEpisode} />
