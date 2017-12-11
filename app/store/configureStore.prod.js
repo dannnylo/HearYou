@@ -4,13 +4,17 @@ import thunk from 'redux-thunk';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from '../reducers';
-import type { playlistStateType } from '../reducers/playlist';
+const baseState = {
+  playlist: [],
+  podcasts: [],
+  episodes: []
+};
 
 const history = createBrowserHistory();
 const router = routerMiddleware(history);
 const enhancer = applyMiddleware(thunk, router);
 
-function configureStore(initialState?: playlistStateType) {
+function configureStore(initialState?: baseState) {
   return createStore(rootReducer, initialState, enhancer);
 }
 

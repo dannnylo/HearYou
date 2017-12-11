@@ -12,15 +12,6 @@ import PlaylistItem from "../components/PlaylistItem"
 
 // let playlist = [
 //   {
-//     id: 2,
-//     url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/1hz-10khz-sweep.mp3',
-//     title: 'Test',
-//     duration: 0,
-//     podcast: {
-//       name: 'Mundo'
-//     }
-//   },
-//   {
 //     id: 3,
 //     url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/walking.mp3',
 //     title: 'walking',
@@ -30,18 +21,14 @@ import PlaylistItem from "../components/PlaylistItem"
 //     }
 //   }
 // ]
-// this.electronStore.set('playlist', playlist)
 
 class PlaylistPage extends Component {
   constructor(props) {
     super(props);
-    this.electronStore = new ElectronStore();
   }
 
   componentDidMount() {
-    let playlist = this.electronStore.get('playlist')
-    playlist = playlist || []
-    this.props.loadPlaylist(playlist)
+    this.props.loadPlaylist((new ElectronStore()).get('playlist', []))
   }
 
   render() {

@@ -37,7 +37,7 @@ class PodcastPage extends Component {
                 <Table.Body>
                   {
                     this.props.episodes.map((episode) => {
-                      return (<Episode key={episode.guid} episode={episode} />);
+                      return (<Episode key={episode.guid} episode={episode} podcast={this.props.podcast} />);
                     })
                   }
                 </Table.Body>

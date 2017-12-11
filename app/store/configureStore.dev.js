@@ -5,11 +5,15 @@ import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers';
 import * as playlistActions from '../actions/playlist';
-import type { playlistStateType } from '../reducers/playlist';
 
 const history = createHashHistory();
+const baseState = {
+  playlist: [],
+  podcasts: [],
+  episodes: []
+};
 
-const configureStore = (initialState?: playlistStateType) => {
+const configureStore = (initialState?: baseState) => {
   // Redux Configuration
   const middleware = [];
   const enhancers = [];

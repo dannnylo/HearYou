@@ -7,26 +7,25 @@ export type playlistStateType = {
 };
 
 type actionType = {
-  +type: string
+  +type: string,
+  playlist: array,
 };
 
-export default function playlistReducer(state: playlist = [], action: actionType) {
-  let electronStore = new ElectronStore();
-
+export default function playlistReducer(state = [], action: actionType) {
   switch (action.type) {
     case LOAD_PLAYLIST:
       return action.playlist
-    case ADD_ITEM:
-      var newPlaylist = [].concat(state.playlist)
-      newPlaylist.push(action.item)
-      electronStore.set('playlist', newPlaylist)
-      return newPlaylist;
-    case REMOVE_ITEM:
-      var newPlaylist = [].concat(state.playlist)
-      newPlaylist.reduce((item) => { return (item.id != action.itemId); })
-      electronStore.set('playlist', newPlaylist)
-      return newPlaylist;
+    // case ADD_ITEM:
+      // var newPlaylist = [].concat(state.playlist);
+      // newPlaylist.push(action.item);
+      // electronStore.set('playlist', newPlaylist);
+      // return newPlaylist;
+    // case REMOVE_ITEM:
+      // var newPlaylist = [].concat(state.playlist)
+      // newPlaylist.reduce((item) => { return (item.id != action.itemId); })
+      // electronStore.set('playlist', newPlaylist)
+      // return newPlaylist;
     default:
-      return state;
+      return [];
   }
 }
