@@ -16,10 +16,11 @@ export function loadPlaylist(playlist) {
   };
 }
 
-export function addItem(item) {
+export function addItem(item, start) {
   return {
     type: ADD_ITEM,
-    item: item
+    item: item,
+    start: start
   };
 }
 

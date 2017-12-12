@@ -1,24 +1,13 @@
 import React from 'react';
 import Sound from 'react-sound';
 import Controls from './Controls';
+import ElectronStore from 'electron-store'
 
 export default class Player extends React.Component {
   constructor(props) {
     super(props);
 
-    let playlist = [
-      {
-        url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/1hz-10khz-sweep.mp3',
-        title: 'Test',
-        duration: 0
-      },
-      {
-        url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/walking.mp3',
-        title: 'walking',
-        duration: 0
-      }
-    ]
-
+    let playlist = (new ElectronStore()).get('playlist', []);
     this.state = {
       playlist: playlist,
       currentSong: playlist[0],
@@ -30,8 +19,6 @@ export default class Player extends React.Component {
   }
 
   render() {
-
-
     const { volume, loop } = this.state;
 
     return (

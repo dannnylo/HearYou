@@ -12,7 +12,7 @@ export default class PlaylistItem extends Component {
             <Image src="https://react.semantic-ui.com/assets/images/avatar/small/mark.png" rounded size="mini" />
             <Header.Content>
               {item.title}
-              <Header.Subheader>{item.podcast.name}</Header.Subheader>
+              <Header.Subheader>{item.podcast.title}</Header.Subheader>
             </Header.Content>
           </Header>
         </Table.Cell>

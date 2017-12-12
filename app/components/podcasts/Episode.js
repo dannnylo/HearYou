@@ -4,7 +4,7 @@ import { Header, Image, Table, Button } from 'semantic-ui-react';
 // import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import * as PodcastActions from '../actions/podcast';
+import * as PlaylistActions from '../../actions/playlist';
 
 class Episode extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class Episode extends Component {
 
   episodeToPlaylist(){
     const episode = this.props.episode;
-    const playlistItem = {
+    return {
       id: episode.guid,
       url: episode.enclosure.url,
       title: episode.title,
@@ -25,12 +25,12 @@ class Episode extends Component {
     }
   }
 
-  playEpisode(){
-    // this.episodeToPlaylist()
+  playEpisode() {
+    this.props.addItem(this.episodeToPlaylist(), true);
   }
 
-  addToPlaylist(){
-
+  addToPlaylist() {
+    this.props.addItem(this.episodeToPlaylist(), false);
   }
 
   render() {
@@ -58,13 +58,12 @@ class Episode extends Component {
 }
 
 
-// function mapStateToProps(state) {
-//   return { };
-// }
-//
-// fun// ction mapDispatchToProps(dispatch) {
-//   return bindActionCreators(PodcastActions, dispatch);
-// }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(PodcastItem);
-export default Episode
+function mapStateToProps(state) {
+  return { };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(PlaylistActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Episode);

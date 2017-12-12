@@ -10,18 +10,6 @@ import { loadPlaylistDispatch, loadPlaylist } from '../actions/playlist';
 
 import PlaylistItem from "../components/PlaylistItem"
 
-// let playlist = [
-//   {
-//     id: 3,
-//     url: 'https://raw.githubusercontent.com/scottschiller/SoundManager2/master/demo/_mp3/walking.mp3',
-//     title: 'walking',
-//     duration: 0,
-//     podcast: {
-//       name: 'Mundo'
-//     }
-//   }
-// ]
-
 class PlaylistPage extends Component {
   constructor(props) {
     super(props);
