@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import Moment from 'react-moment';
 import { Header, Image, Table, Button } from 'semantic-ui-react';
 // import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -35,21 +36,26 @@ class Episode extends Component {
 
   render() {
     const episode = this.props.episode;
+
     return (
       <Table.Row key={episode.guid}>
         <Table.Cell>
           <Header as="h4" image>
-            <Image src={episode.cover} rounded size="mini" />
+            <Image src={episode.image} rounded size="mini" />
             <Header.Content>
               {episode.title}
               <Header.Subheader>{episode.url}</Header.Subheader>
             </Header.Content>
           </Header>
         </Table.Cell>
-        <Table.Cell>
-          {episode.published}
+
+        <Table.Cell textAlign='right' collapsing>
+          <Moment format="DD/MM/YYYY">
+            {episode.published}
+          </Moment>
         </Table.Cell>
-        <Table.Cell collapsing>
+
+        <Table.Cell textAlign='right' collapsing>
           <Button icon="play" title="Play this episode." onClick={this.playEpisode} />
           <Button icon="plus" title="Add to playlist." onClick={this.addToPlaylist} />
         </Table.Cell>

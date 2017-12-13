@@ -16,7 +16,7 @@ export default class PlaylistItem extends Component {
             </Header.Content>
           </Header>
         </Table.Cell>
-        <Table.Cell>
+        <Table.Cell collapsing>
           <Button icon="play" />
         </Table.Cell>
       </Table.Row>)

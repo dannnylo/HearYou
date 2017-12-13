@@ -6,9 +6,10 @@ import { bindActionCreators } from 'redux';
 
 import * as EpisodesActions from "../actions/episode";
 
-import { Sidebar, Segment, Table, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Grid, Table, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
 
 import Episode from "../components/podcasts/Episode";
+import Preview from "../components/podcasts/Preview";
 
 class PodcastPage extends Component {
   constructor(props) {
@@ -23,29 +24,25 @@ class PodcastPage extends Component {
     const podcast = this.props.podcast;
 
     return (
-      <div>
-        <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='push' width='thin' visible={true} icon='labeled' vertical inverted >
-            <Image src={podcast.cover} />
-            {podcast.title}
-          </Sidebar>
-
-          <Sidebar.Pusher>
-            <Segment basic>
-              <Header as='h3'>{podcast.title}</Header>
-              <Table striped celled columns='10'>
-                <Table.Body>
-                  {
-                    this.props.episodes.map((episode) => {
-                      return (<Episode key={episode.guid} episode={episode} podcast={this.props.podcast} />);
-                    })
-                  }
-                </Table.Body>
-              </Table>
-            </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-      </div>
+      <Grid>
+        <Grid.Row>
+          <Grid.Column width={4}>
+            <Preview podcast={podcast} />
+          </Grid.Column>
+          <Grid.Column width={12}>
+            <Header as='h3'>{podcast.title}</Header>
+            <Table striped celled>
+              <Table.Body>
+                {
+                  this.props.episodes.map((episode) => {
+                    return (<Episode key={episode.guid} episode={episode} podcast={this.props.podcast} />);
+                  })
+                }
+              </Table.Body>
+            </Table>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }

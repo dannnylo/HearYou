@@ -11,6 +11,26 @@
   overflow-y: hidden;
 }*/
 
-.ui.segment {
-  min-height: 600px;
+body {
+  min-width: 850px;
+}
+
+.podcast-preview {
+  background-color: #333;
+  height: 100%;
+  color: white;
+}
+
+.podcast-preview h3 {
+  text-align: center;
+}
+
+.podcast-preview p {
+  padding: 0px 5px;
+  font-size: 14px;
+  text-align: justify;
+}
+
+h3 {
+  margin-top: 14px !important;
 }
