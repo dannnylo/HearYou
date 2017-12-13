@@ -16,7 +16,12 @@ export default function playlistReducer(state = [], action: actionType) {
     case LOAD_PLAYLIST:
       return action.playlist
     case ADD_ITEM:
-      var newPlaylist = [].concat(state);
+    var newPlaylist = [];
+      if (state === []) {
+        newPlaylist = newPlaylist.concat(state);
+      } else {
+        newPlaylist = (new ElectronStore()).get('playlist', []);
+      }
       if (action.start){
         newPlaylist = newPlaylist.map((item) => {
           return Object.assign(item, { play: false })
