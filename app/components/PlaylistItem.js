@@ -9,7 +9,7 @@ export default class PlaylistItem extends Component {
       <Table.Row key={item.id}>
         <Table.Cell>
           <Header as="h4" image>
-            <Image src="https://react.semantic-ui.com/assets/images/avatar/small/mark.png" rounded size="mini" />
+            <Image src={item.podcast.cover} rounded size="mini" />
             <Header.Content>
               {item.title}
               <Header.Subheader>{item.podcast.title}</Header.Subheader>
