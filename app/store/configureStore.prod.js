@@ -7,7 +7,8 @@ import rootReducer from '../reducers';
 const baseState = {
   playlist: [],
   podcasts: [],
-  episodes: []
+  episodes: [],
+  general: { loading: false }
 };
 
 const history = createBrowserHistory();

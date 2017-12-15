@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Button, Modal, Input, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import RSSParser from '../../utils/RSSParser';
 import * as PodcastActions from '../../actions/podcast';
 import * as EpisodesActions from '../../actions/episode';
-import RSSParser from '../../utils/RSSParser';
+import * as GeneralActions from '../../actions/general';
 
 class NewPodcast extends Component {
   constructor(props) {
@@ -20,10 +20,11 @@ class NewPodcast extends Component {
   close = () => this.setState({ open: false })
 
   addPodcast() {
+    this.props.loading(true);
     const parser = new RSSParser(1, this.state.url);
     parser.getData((data) => {
       const podcastId = new Date().getTime();
-      console.info("PODCAST", data);
+
       this.props.addPodcast({
         id: podcastId,
         url: data.link,
@@ -31,8 +32,8 @@ class NewPodcast extends Component {
         description: data.description,
         cover: data.image
       });
-      console.info('NEW_POD', data.episodes);
       this.props.addEpisodes(podcastId, data.episodes);
+      this.props.loading(false);
     });
     this.setState({ open: false, url: '' });
   }
@@ -79,7 +80,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(Object.assign(PodcastActions, EpisodesActions), dispatch);
+  return bindActionCreators(Object.assign(PodcastActions, EpisodesActions, GeneralActions), dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewPodcast);

@@ -10,7 +10,8 @@ const history = createHashHistory();
 const baseState = {
   playlist: [],
   podcasts: [],
-  episodes: []
+  episodes: [],
+  general: { loading: false }
 };
 
 const configureStore = (initialState?: baseState) => {
