@@ -34,8 +34,10 @@ class PodcastPage extends Component {
             <Table striped celled>
               <Table.Body>
                 {
-                  this.props.episodes.map((episode) => {
-                    return (<Episode key={episode.guid} episode={episode} podcast={this.props.podcast} />);
+                  this.props.episodes.map((episode, episodeCount) => {
+                    if (episodeCount <= 49){ // Limited to 50 episodes to better performance
+                      return (<Episode key={episode.guid} episode={episode} podcast={this.props.podcast} />);
+                    }
                   })
                 }
               </Table.Body>
