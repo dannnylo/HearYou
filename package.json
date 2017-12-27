@@ -31,8 +31,8 @@
   },
   "browserslist": "electron 1.6",
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.develar.ElectronReact",
+    "productName": "HearYou",
+    "appId": "org.dannnylo.HearYou",
     "files": [
       "dist/",
       "node_modules/",

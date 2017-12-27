@@ -1,0 +1,43 @@
+<svg width="222" height="252" viewBox="0 0 222 252" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>HearYou</title>
+<g id="Canvas" transform="translate(276 1004)">
+<g id="Group 4">
+<g id="Polygon">
+<g filter="url(#filter0_i)">
+<use xlink:href="#path0_fill" transform="matrix(8.80645e-17 1 -1 4.25756e-17 -69 -1006)" fill="#27AE60"/>
+</g>
+<use xlink:href="#path1_stroke" transform="matrix(8.80645e-17 1 -1 4.25756e-17 -69 -1006)" fill="#27AE60"/>
+</g>
+<g id="Group" filter="url(#filter1_i)">
+<g id="HY">
+<use xlink:href="#path2_fill" transform="translate(-319 -1006)" fill="#2C3E50"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_i" filterUnits="userSpaceOnUse" x="-276" y="-1004" width="222" height="256" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 0" result="hardAlpha"/>
+<feOffset dx="0" dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow"/>
+</filter>
+<filter id="filter1_i" filterUnits="userSpaceOnUse" x="-255" y="-917" width="134" height="84" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 0" result="hardAlpha"/>
+<feOffset dx="0" dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow"/>
+</filter>
+<path id="path0_fill" d="M 128 0L 238.851 192L 17.1487 192L 128 0Z"/>
+<path id="path1_stroke" d="M 128 0L 140.99 -7.5C 138.311 -12.141 133.359 -15 128 -15C 122.641 -15 117.689 -12.141 115.01 -7.5L 128 0ZM 238.851 192L 238.851 207C 244.21 207 249.162 204.141 251.842 199.5C 254.521 194.859 254.521 189.141 251.842 184.5L 238.851 192ZM 17.1487 192L 4.15837 184.5C 1.47888 189.141 1.47888 194.859 4.15837 199.5C 6.83786 204.141 11.7898 207 17.1487 207L 17.1487 192ZM 115.01 7.5L 225.861 199.5L 251.842 184.5L 140.99 -7.5L 115.01 7.5ZM 238.851 177L 17.1487 177L 17.1487 207L 238.851 207L 238.851 177ZM 30.1391 199.5L 140.99 7.5L 115.01 -7.5L 4.15837 184.5L 30.1391 199.5Z"/>
+<path id="path2_fill" d="M 82.1558 166.68C 79.8091 167.56 77.3158 168 74.6758 168C 72.0358 168 69.7258 167.157 67.7458 165.47C 65.8391 163.783 64.8858 161.473 64.8858 158.54C 64.8858 155.607 65.2524 149.997 65.9858 141.71C 66.7191 133.35 67.0858 126.677 67.0858 121.69C 67.0858 108.857 66.3158 98.7 64.7758 91.22C 67.1224 90.34 69.6158 89.9 72.2558 89.9C 74.8958 89.9 77.1691 90.7433 79.0758 92.43C 81.0558 94.1167 82.0458 96.2067 82.0458 98.7C 82.0458 101.12 81.9358 103.467 81.7158 105.74C 81.5691 108.013 81.3491 110.617 81.0558 113.55C 80.7624 116.483 80.5424 119.05 80.3958 121.25C 83.3291 121.543 88.3891 121.69 95.5758 121.69C 102.762 121.69 108.299 121.397 112.186 120.81C 112.186 109.15 111.416 99.0667 109.876 90.56C 112.222 89.68 114.716 89.24 117.356 89.24C 119.996 89.24 122.269 90.0833 124.176 91.77C 126.156 93.4567 127.146 95.8033 127.146 98.81C 127.146 101.743 126.779 106.987 126.046 114.54C 125.312 122.093 124.946 128.143 124.946 132.69C 124.946 147.063 125.716 158.613 127.256 167.34C 124.909 168.22 122.416 168.66 119.776 168.66C 117.136 168.66 114.826 167.817 112.846 166.13C 110.939 164.443 109.986 162.207 109.986 159.42C 109.986 156.633 110.279 152.087 110.866 145.78C 111.452 139.473 111.819 135.147 111.966 132.8C 104.779 132.287 94.0724 132.03 79.8458 132.03L 79.8458 134.89C 79.8458 147.87 80.6158 158.467 82.1558 166.68ZM 134.458 95.62C 136.218 91.8067 139.445 89.9 144.138 89.9C 152.865 89.9 161.115 102.44 168.888 127.52C 173.435 120.7 177.322 113.77 180.548 106.73C 183.848 99.6167 185.498 93.7867 185.498 89.24C 193.272 89.24 197.158 91.2933 197.158 95.4C 197.158 98.26 195.398 102.513 191.878 108.16C 188.358 113.807 184.545 119.637 180.438 125.65C 176.405 131.59 174.022 135.953 173.288 138.74C 173.068 141.6 172.958 145.12 172.958 149.3C 172.958 153.48 173.472 159.273 174.498 166.68C 172.152 167.56 169.658 168 167.018 168C 164.378 168 162.068 167.157 160.088 165.47C 158.182 163.783 157.228 161.657 157.228 159.09C 157.228 156.45 157.668 149.777 158.548 139.07C 152.902 117.07 144.872 102.587 134.458 95.62Z"/>
+</defs>
+</svg>
