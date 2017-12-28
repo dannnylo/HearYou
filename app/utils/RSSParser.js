@@ -1,6 +1,5 @@
 var FeedParser = require('feedparser');
 var request = require('request');
-var PodcastItem = require('./PodcastItem');
 const parsePodcast = require('node-podcast-parser');
 
 module.exports = class RSSParser {

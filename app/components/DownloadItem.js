@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { Header, Image, Table, Button, Loader } from 'semantic-ui-react';
+import { Header, Image, Table, Button, Loader, Progress } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -20,7 +20,7 @@ class DownloadItem extends Component {
 
   render() {
     const item = this.props.item;
-
+    console.info(item)
     return (
       <Table.Row key={item.id}>
         <Table.Cell>
@@ -28,7 +28,10 @@ class DownloadItem extends Component {
             <Image src={item.image} rounded size="mini" />
             <Header.Content>
               {item.title}
-              <Header.Subheader>{item.url}</Header.Subheader>
+              <Header.Subheader>{item.enclosure.url}</Header.Subheader>
+              <Header.Subheader>
+                <Progress percent={item.progress} indicating={item.active} className="force-no-margin" inverted color="green" progress size="small" />
+              </Header.Subheader>
             </Header.Content>
           </Header>
         </Table.Cell>
@@ -39,7 +42,6 @@ class DownloadItem extends Component {
       </Table.Row>);
   }
 }
-
 
 function mapStateToProps(state) {
   return { };

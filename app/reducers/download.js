@@ -1,6 +1,6 @@
 // @flow
 import ElectronStore from 'electron-store';
-import { ADD_DOWNLOAD, REMOVE_DOWNLOAD, LOAD_DOWNLOADS } from '../actions/download';
+import { ADD_DOWNLOAD, REMOVE_DOWNLOAD, LOAD_DOWNLOADS, UPDATE_DOWNLOAD } from '../actions/download';
 
 export type downloadStateType = {
   +downloads: array
@@ -22,13 +22,27 @@ export default function downloadReducer(state = [], action: actionType) {
       return action.downloads;
     case ADD_DOWNLOAD:
       const newDownload = [].concat(state);
-      newDownload.push(action.item);
+      newDownload.push(Object.assign({
+        progress: 0,
+        active: false
+      }, action.item));
       electronStore.set('downloads', newDownload);
       return newDownload;
     case REMOVE_DOWNLOAD:
       const reducedDownload = state.filter((item) => { return item.id != action.itemId })
       electronStore.set('downloads', reducedDownload)
       return reducedDownload;
+    case UPDATE_DOWNLOAD:
+      let downloads = [].concat(state);
+
+      let item = Object.assign({}, downloads[action.position]);
+      item.active = (action.progress > 0);
+      item.progress = action.progress;
+      downloads[action.position] = item;
+      if (action.save){
+        electronStore.set('downloads', downloads);
+      }
+      return downloads;
     default:
       return state;
   }

@@ -10,7 +10,7 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain} from 'electron';
 import MenuBuilder from './menu';
 
 /*
@@ -88,6 +88,35 @@ app.on('ready', async () => {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
+  ipcMain.on('downloadFile', (event, episode, savingPath) => {
+    mainWindow.webContents.downloadURL(episode.enclosure.url)
+    mainWindow.webContents.session.on('will-download', (event, item, webContents) => {
+      if (savingPath) item.setSavePath(savingPath)
+
+      item.on('updated', (event, state) => {
+        if (state === 'interrupted') {
+          console.log('Download is interrupted but can be resumed')
+        } else if (state === 'progressing') {
+          if (item.isPaused()) {
+            console.log('Download is paused')
+          } else {
+            mainWindow.webContents.send('download-progress', episode, item, ((item.getReceivedBytes() / item.getTotalBytes()) * 100).toFixed(2))
+          }
+        }
+      })
+      item.once('done', (event, state) => {
+        if (state === 'completed') {
+          // mainWindow.webContents.send('download-done', item)
+          // mainWindow.webContents.send('done', state)
+          console.log('Download successfully')
+        } else {
+          // mainWindow.webContents.send('download-error', item)
+          console.log(`Download failed: ${state}`)
+        }
+      })
+    })
+  })
 
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
